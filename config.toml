@@ -1,7 +1,8 @@
-theme = "dyracula"
+theme = "dracula"
 
 [editor]
 cursorline = true
+cursorcolumn = true
 line-number = "relative"
 scroll-lines = 1
 bufferline = "multiple"
@@ -10,12 +11,13 @@ true-color = true
 auto-save = true
 auto-info = true
 completion-trigger-len = 1
+preview-completion-insert = true
 idle-timeout = 0
 
 [editor.statusline]
 left = ["mode", "separator", "spinner", "separator", "diagnostics", "version-control"]
 center = ["file-name", "file-modification-indicator"] 
-right = ["file-encoding", "file-type", "selections", "file-encoding", "total-line-numbers", "position", "position-percentage"]
+right = ["file-encoding", "file-type", "register", "selections", "file-encoding", "total-line-numbers", "position", "position-percentage"]
 separator = " "
 mode.normal = "NORMAL"
 mode.insert = "INSERT"

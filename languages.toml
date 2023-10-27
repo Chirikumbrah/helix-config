@@ -1,3 +1,10 @@
+### language servers
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+
+### languages
 [[language]]
 name = "ini"
 scope = "source.ini"
@@ -20,12 +27,21 @@ file-types = [
   "container",
   "volume",
   "kube",
-  "network"
+  "network",
 ]
 injection-regex = "ini"
 comment-token = "#"
 indent = { tab-width = 4, unit = "    " }
 roots = []
+
+[[language]]
+name = "dockerfile"
+scope = "source.dockerfile"
+injection-regex = "docker|dockerfile"
+roots = ["Dockerfile", "Containerfile"]
+file-types = ["Dockerfile", "dockerfile", "Containerfile", "containerfile"]
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "python"
@@ -43,12 +59,11 @@ roots = [
   "pyrightconfig.json",
   "Poetry.lock",
 ]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
+language-servers = [{ name = "pyright" }]
 comment-token = "#"
 formatter = { command = "black", args = ["--quiet", "-"] }
 indent = { tab-width = 4, unit = "    " }
 auto-format = false
-config = {}
 
 [[language]]
 name = "yaml"
