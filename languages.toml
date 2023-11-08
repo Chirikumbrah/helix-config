@@ -61,7 +61,9 @@ roots = [
 ]
 language-servers = [{ name = "pyright" }]
 comment-token = "#"
-formatter = { command = "black", args = ["--quiet", "-"] }
+[language.formatter]
+command = "black"
+args = ["--line-length", "88", "--quiet", "-"]
 indent = { tab-width = 4, unit = "    " }
 auto-format = false
 
