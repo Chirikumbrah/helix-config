@@ -1,10 +1,5 @@
-### language servers
-[language-server.pyright]
-command = "pyright-langserver"
-args = ["--stdio"]
-
-
 ### languages
+
 [[language]]
 name = "ini"
 scope = "source.ini"
@@ -61,11 +56,25 @@ roots = [
 ]
 language-servers = [{ name = "pyright" }]
 comment-token = "#"
+
 [language.formatter]
 command = "black"
 args = ["--line-length", "88", "--quiet", "-"]
 indent = { tab-width = 4, unit = "    " }
 auto-format = false
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [{ name = "entrypoint", completion = "filename", default = "." }]
+args = { mode = "debug", program = "{0}" }
+
+[language.debugger]
+name = "debugpy"
+transport = "stdio"
+command = "python3"
+args = ["-m", "debugpy.adapter"]
+
 
 [[language]]
 name = "yaml"
