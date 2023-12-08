@@ -4,20 +4,38 @@ theme = "dracula"
 cursorline = true
 cursorcolumn = true
 line-number = "relative"
-scroll-lines = 1
+scroll-lines = 3
+scrolloff = 10
 bufferline = "multiple"
 color-modes = true
-true-color = true
+# true-color = true
 auto-save = true
 auto-info = true
 completion-trigger-len = 1
 preview-completion-insert = true
 idle-timeout = 0
+# completion-replace = true
 
 [editor.statusline]
-left = ["mode", "separator", "spinner", "separator", "diagnostics", "version-control"]
-center = ["file-name", "file-modification-indicator"] 
-right = ["file-encoding", "file-type", "register", "selections", "file-encoding", "total-line-numbers", "position", "position-percentage"]
+left = [
+  "mode",
+  "separator",
+  "spinner",
+  "separator",
+  "diagnostics",
+  "version-control",
+]
+center = ["file-name", "file-modification-indicator"]
+right = [
+  "file-encoding",
+  "file-type",
+  "register",
+  "selections",
+  "file-encoding",
+  "total-line-numbers",
+  "position",
+  "position-percentage",
+]
 separator = " "
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
@@ -35,7 +53,7 @@ select = "block"
 
 [editor.soft-wrap]
 enable = true
-max-wrap = 25 # increase value to reduce forced mid-word wrapping
+max-wrap = 25         # increase value to reduce forced mid-word wrapping
 max-indent-retain = 0
 
 [editor.auto-pairs]
@@ -63,39 +81,33 @@ snippets = true
 ### INSERT mode
 [keys.normal]
 # better text navigation
-a = ["move_char_right", "insert_mode"]
-y = "yank_main_selection_to_clipboard"
-p = "paste_clipboard_after"
-P = "paste_clipboard_before"
+# a = ["move_char_right", "insert_mode"]
+# y = "yank_to_clipboard"
+# Y = "yank_joined_to_clipboard"
+# p = "paste_clipboard_after"
+# P = "paste_clipboard_before"
+# R = "replace_selections_with_clipboard"
 G = "goto_last_line"
 0 = "goto_line_start"
-R = ":clipboard-paste-replace"
 X = "extend_line_above"
-"ret" = ["move_line_down", "goto_first_nonwhitespace"] # Maps the enter key to move to start of next line
+"ret" = [
+  "move_line_down",
+  "goto_first_nonwhitespace",
+] # Maps the enter key to move to start of next line
 D = "delete_char_backward"
-d = ["yank_main_selection_to_clipboard", "delete_selection"]
-
-# fast format
-F = ":format"
-
-# fast exit
-q = { q = ":q!", w = ":wq!" }
-
-# fast saving
-C-s = ":w!"
-
+d = ["yank_to_clipboard", "delete_selection_noyank"]
+F = ":format" # fast format
+q = { q = ":q!", w = ":wq!" } # fast exit
+C-s = ":w!" # fast saving
 # config keys
 C-o = ":config-open"
 C-r = ":config-reload"
-
 # better buffers navigation
 L = ":bn"
 H = ":bp"
 "C-pagedown" = ":bn"
 "C-pageup" = ":bp"
-
 "space" = { w = ":w!", q = ":q!", c = ":bc", t = ":sh ~/.config/helix/scripts/hemux.sh" }
-
 # better windows navigation
 C-l = ["jump_view_right"]
 C-h = ["jump_view_left"]
@@ -103,49 +115,45 @@ C-j = ["jump_view_down"]
 C-k = ["jump_view_up"]
 
 
-
 ### SELECT mode
 [keys.select]
 # better text navigation
-y = "yank_main_selection_to_clipboard"
-p = "paste_clipboard_after"
-P = "paste_clipboard_before"
+# y = "yank_to_clipboard"
+# Y = "yank_joined_to_clipboard"
+# p = "paste_clipboard_after"
+# P = "paste_clipboard_before"
+# R = "replace_selections_with_clipboard"
 G = "goto_last_line"
-R = ":clipboard-paste-replace"
 C-j = ["open_below", "select_mode"]
 C-k = ["open_above", "select_mode"]
 0 = "goto_line_start"
 D = "delete_char_backward"
-d = ["yank_main_selection_to_clipboard", "delete_selection"]
+d = ["yank_to_clipboard", "delete_selection_noyank"]
+X = "extend_line_above"
+"ret" = [
+  "move_line_down",
+  "goto_first_nonwhitespace",
+] # Maps the enter key to move to start of next line
 A-z = "normal_mode"
 
-# fast format
-F = ":format"
-
-# fast exit
-q = { q = ":q!", w = ":wq!" }
-
-# fast saving
-C-s = ":w!"
-
+F = ":format"                 # fast format
+q = { q = ":q!", w = ":wq!" } # fast exit
+C-s = ":w!"                   # fast saving
 # config keys
 C-o = ":config-open"
 C-r = ":config-reload"
-
 # better buffers navigation
 L = ":bn"
 H = ":bp"
 "pagedown" = ":bn"
 "pageup" = ":bp"
-
 "space" = { w = ":w!", q = ":q!", c = ":bc" }
-
 
 
 ### INSERT mode
 [keys.insert]
-j = { k = "normal_mode" } # Maps `jk` to exit insert mode
+j = { k = "normal_mode" }                                               # Maps `jk` to exit insert mode
 A-z = "normal_mode"
-C-right = [ "move_next_word_start", "append_mode", "collapse_selection" ]
-C-left = [ "move_prev_word_start", "collapse_selection" ]
-C-s = [ "normal_mode", ":w!"]
+C-right = ["move_next_word_start", "append_mode", "collapse_selection"]
+C-left = ["move_prev_word_start", "collapse_selection"]
+C-s = ["normal_mode", ":w!"]
