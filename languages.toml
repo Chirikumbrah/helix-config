@@ -38,12 +38,14 @@ file-types = ["Dockerfile", "dockerfile", "Containerfile", "containerfile"]
 comment-token = "#"
 indent = { tab-width = 2, unit = "  " }
 
+### PYTHON ###
 [[language]]
 name = "python"
 scope = "source.python"
 injection-regex = "python"
 file-types = ["py"]
 shebangs = ["python"]
+comment-token = "#"
 roots = [
   "pyproject.toml",
   "main.py",
@@ -54,14 +56,25 @@ roots = [
   "pyrightconfig.json",
   "Poetry.lock",
 ]
-language-servers = [{ name = "pyright" }]
-comment-token = "#"
+language-servers = [
+  { name = "ruff-lsp", only-features = [
+    "format",
+    "diagnostics",
+  ] },
+  { name = "pyright", except-features = [
+    "format",
+    "diagnostics",
+  ] },
+]
 
-[language.formatter]
-command = "black"
-args = ["--line-length", "88", "--quiet", "-"]
-indent = { tab-width = 4, unit = "    " }
-auto-format = false
+[language-server.ruff-lsp]
+command = "ruff-lsp"
+config.documentFormatting = true
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+config.reportMissingtypeStubs = false
 
 [[language.debugger.templates]]
 name = "source"
@@ -76,6 +89,7 @@ command = "python3"
 args = ["-m", "debugpy.adapter"]
 
 
+### YAML ###
 [[language]]
 name = "yaml"
 file-types = ["yaml", "yml"]
