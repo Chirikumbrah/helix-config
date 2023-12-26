@@ -64,6 +64,7 @@ language-servers = [
 [language-server.ruff-lsp]
 command = "ruff-lsp"
 config.documentFormatting = true
+config.line-length = 100
 
 [language-server.pyright]
 command = "pyright-langserver"
