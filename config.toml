@@ -78,16 +78,27 @@ tabpad = "·"
 ### NORMAL mode
 [keys.normal]
 "#" = "toggle_comments"
-"ret" = ":w!"                                                                             # fast saving
-q = { w = ":wq!", q = ":q!"                                                               } # fast exit
+"ret" = ":w!" # fast saving
+q = { w = ":wq!", q = ":q!" } # fast exit
 "space" = { W = ":w!", q = ":q!", c = ":bc!", t = ":sh ~/.config/helix/scripts/hemux.sh" }
+C-j = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "paste_after",
+] # move line down
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+] # move line up
 C-n = ["move_line_down", "scroll_down"]
-C-o = ":config-open"                                                                      # open config
+C-o = ":config-open" # open config
 C-p = ["move_line_up", "scroll_up"]
-C-r = ":config-reload"                                                                    # reload config
-C-s = ":w!"                                                                               # fast saving
+C-r = ":config-reload" # reload config
+C-s = ":w!" # fast saving
 D = "delete_char_backward"
-F = ":format"                                                                             # fast format
+F = ":format" # fast format
 G = "goto_last_line"
 X = "extend_line_above"
 esc = ["collapse_selection", "keep_primary_selection"]
@@ -96,12 +107,23 @@ esc = ["collapse_selection", "keep_primary_selection"]
 ### SELECT mode
 [keys.select]
 "#" = "toggle_comments"
-"ret" = ":w!"                                                                             # fast saving
-q = { w = ":wq!", q = ":q!"                                                               } # fast exit
+"ret" = ":w!" # fast saving
+q = { w = ":wq!", q = ":q!" } # fast exit
 "space" = { W = ":w!", q = ":q!", c = ":bc!", t = ":sh ~/.config/helix/scripts/hemux.sh" }
-C-s = ":w!"                                                                               # fast saving
+C-j = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "paste_after",
+] # move line down
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+] # move line up
+C-s = ":w!" # fast saving
 D = "delete_char_backward"
-F = ":format"                                                                             # fast format
+F = ":format" # fast format
 G = "goto_last_line"
 X = "extend_line_above"
 
